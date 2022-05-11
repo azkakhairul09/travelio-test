@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Alert, CardMedia, Snackbar } from '@mui/material'
+import { Alert, Box, CardMedia, Snackbar } from '@mui/material'
 import { getBooks } from '../../../function/apiGetBooks'
 import SearchLayout from '../../layout/searchLayout';
 import { styled } from '@mui/material/styles';
@@ -19,6 +19,24 @@ const CardList = styled('div')(({ theme }) => ({
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center'
+}));
+
+const EmptyImage = styled(CardMedia)(({ theme }) => ({
+    [theme.breakpoints.down('sm')]: {
+        width: '100%',
+    },
+    width: '100%',
+    height: 'auto',
+    margin: 'auto'
+}));
+
+const ImageContainer = styled(Box)(({ theme }) => ({
+    [theme.breakpoints.down('sm')]: {
+        width: '100%',
+    },
+    width: '600px',
+    height: 'auto',
+    margin: 'auto'
 }));
 
 function BookCard() {
@@ -105,13 +123,15 @@ function BookCard() {
                     <BookLayout key={i} obj={obj} isWishlistClicked={isWishlistClicked} isFavoriteClicked={isFavoriteClicked} ref={ref} bookUid={obj.id} />
                 )}
             </CardList>
+            <ImageContainer>
             {!listBooks &&
-                <CardMedia alt="empty page" component="img" src={empty} sx={{
+                <EmptyImage alt="empty page" component="img" src={empty} sx={{
                     width: '600px',
                     height: 'auto',
                     margin: 'auto'
                 }} />
             }
+            </ImageContainer>
         </>
     )
 }

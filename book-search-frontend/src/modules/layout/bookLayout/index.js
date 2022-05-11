@@ -11,8 +11,11 @@ const Book = styled('div')(({ theme }) => ({
 
 const BookContainer = styled('div')(({ theme }) => ({
     width: '200px',
-    height: '40ch',
-    padding: '10px 8px'
+    height: '100%',
+    padding: '10px 8px',
+    [theme.breakpoints.down('sm')]: {
+        width: '150px'
+    },
 }));
 
 const BookLayout = forwardRef((props, ref) => {
